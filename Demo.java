@@ -32,6 +32,7 @@ public class Demo {
     // Declare choice as ShipmentType type. Since it is an enum it has indices 0-2.
     ShipmentType choice = ShipmentType.values()[choiceNum - 1];
 
+    //TODO 2 - You only need one reference variable of type IShipper that can hold any of the three types
     //Create a mew IShipper that can hold all three types (UPS, FEDEX, PLANET) since they implement IShipper interface
     IShipper shipper = null;
 

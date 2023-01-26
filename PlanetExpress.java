@@ -1,4 +1,4 @@
-import java.text.DecimalFormat;
+
 import java.util.ArrayList;
 
 public class PlanetExpress implements IShipper{
@@ -21,14 +21,15 @@ public class PlanetExpress implements IShipper{
             totalQuantity += item.getQty();
             totalWeight += item.getWeightOunces();
         }
-        //Todo + round double 2 decimal places
+
     }
 
-    // Use System.lineSeparator so that the code works in all platforms
+    // Use System.lineSeparator() so that the code works in all platforms
     @Override
     public String outputProducts() {
         StringBuilder sbReport = new StringBuilder();
-        //Todo Table + header sout
+        //Todo 3 - Add formatted table header
+        //Todo 4 - Format Output Round weight to 2 decimal points
         sbReport.append(String.format("%10s %40s %18s %30s", "Product Id", "Quantity", "Description", "Weight (oz)"));
         sbReport.append(System.lineSeparator());
         sbReport.append(String.format("%s%s","----------------------------------------------------------------------------------------------------",System.lineSeparator()));
@@ -36,7 +37,7 @@ public class PlanetExpress implements IShipper{
             sbReport.append(String.format("%-45s %-12d %-30s %-10.2f", item.getId(), item.getQty(), item.getDescription(), item.getWeightOunces()));
             sbReport.append(System.lineSeparator());
         }
-        //Todo + change the output. Round weight to 2 decimal points
+
         System.out.println(System.lineSeparator());
         sbReport.append("\nTotal number of items: " + totalQuantity + "\n");
         sbReport.append(String.format("Total weight of items: %.2f oz\n", totalWeight));
