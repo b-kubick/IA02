@@ -18,7 +18,7 @@ public class Demo {
     shipment.addProduct(new Product("91f496f6-f6fe-4c5b-913a-810449456a50", 3, "HP Monitor", 25.1));
     shipment.addProduct(new Product("c25bee68-2b1b-4b29-afb8-885ea84f7859", 2, "Aperion Speakers", 20.8));
 
-    System.out.println("How do you want to ship your order?");
+    System.out.println(System.lineSeparator() + "How do you want to ship your order?");
     System.out.println("1) FedEx");
     System.out.println("2) UPS");
     System.out.println("3) Planet Express");
@@ -32,7 +32,7 @@ public class Demo {
     // Declare choice as ShipmentType type. Since it is an enum it has indices 0-2.
     ShipmentType choice = ShipmentType.values()[choiceNum - 1];
 
-    //TODO 2 - You only need one reference variable of type IShipper that can hold any of the three types
+    //TODO 2 + You only need one reference variable of type IShipper that can hold any of the three types
     //Create a mew IShipper that can hold all three types (UPS, FEDEX, PLANET) since they implement IShipper interface
     IShipper shipper = null;
 
