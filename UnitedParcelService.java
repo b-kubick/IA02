@@ -1,10 +1,11 @@
-public class UnitedParcelService {
+public class UnitedParcelService implements IShipper{
 
   Product prod1 = null;
   Product prod2 = null;
   Product prod3 = null;
   Product prod4 = null;
 
+  @Override
   public void addProducts(Shipment shipment) {
     int i = 0;
     for (Product p : shipment.getProducts()) {
@@ -18,18 +19,19 @@ public class UnitedParcelService {
     }
   }
 
-  public String compName() {
-    return "UPS";
-  }
-
-  public String showProducts() {
+  @Override
+  public String outputProducts() {
     String listOfItems = "";
     listOfItems = listOfItems + prod1.getDescription() + " [" + prod1.getQty() + "]" + System.lineSeparator();
     listOfItems = listOfItems + prod2.getDescription() + " [" + prod2.getQty() + "]" + System.lineSeparator();
     listOfItems = listOfItems + prod3.getDescription() + " [" + prod3.getQty() + "]" + System.lineSeparator();
     listOfItems = listOfItems + prod4.getDescription() + " [" + prod4.getQty() + "]" + System.lineSeparator();
 
-    return listOfItems;
+    return listOfItems;  }
+
+  @Override
+  public String companyName() {
+    return "UPS";
   }
 
 

@@ -2,12 +2,14 @@ import java.util.Scanner;
 
 enum ShipmentType {
   FEDEX,
-  UPS
+  UPS,
+  PLANET
 }
 
 public class Demo {
 
   Scanner keyboard = new Scanner(System.in);
+  // Variable to hold the new shipment products
   Shipment shipment = new Shipment();
 
   public void runDemo() {
@@ -19,42 +21,49 @@ public class Demo {
     System.out.println("How do you want to ship your order?");
     System.out.println("1) FedEx");
     System.out.println("2) UPS");
+    System.out.println("3) Planet Express");
+
+    // Read user input
     String userInput = keyboard.nextLine();
+
+    //Parse user's choice to an integer
     int choiceNum = Integer.parseInt(userInput);
+
+    // Declare choice as ShipmentType type. Since it is an enum it has indices 0-2.
     ShipmentType choice = ShipmentType.values()[choiceNum - 1];
 
-    String shipperName = null;
-    FederalExpress fedex = null;
-    UnitedParcelService ups = null;
+    //Create a mew IShipper that can hold all three types (UPS, FEDEX, PLANET) since they implement IShipper interface
+    IShipper shipper = null;
+
+    // Switch between user choices
     switch (choice) {
       case FEDEX:
-        fedex = new FederalExpress();
-        fedex.addItems(shipment);
-        shipperName = fedex.company();
+        shipper = new FederalExpress();
         break;
       case UPS:
-        ups = new UnitedParcelService();
-        ups.addProducts(shipment);
-        shipperName = ups.compName();
+        shipper = new UnitedParcelService();
+        break;
+      case PLANET:
+        shipper = new PlanetExpress();
         break;
       default:
         System.out.println("Invalid choice");
     }
 
+    // Call addProducts() method to add all products of the shipment into the shipper
+    shipper.addProducts(shipment);
+    String shipperName = shipper.companyName();
+
     System.out.println("Your shipment is being processed by " + shipperName);
     System.out.println("Items getting ready to ship:");
-    String productList = null;
-    switch (choice) {
-      case FEDEX:
-        productList = fedex.outputProducts();
-        break;
-      case UPS:
-        productList = ups.showProducts();
-        break;
-      default:
-        throw new AssertionError();
-    }
+
+    // Declare a new productList variable that holds the output from all the shipping types
+    // Depending on what the user chooses is going to call the right Java Class
+    String productList = shipper.outputProducts();
+
+    // Print the productList
     System.out.println(productList);
+
   }
 
 }
